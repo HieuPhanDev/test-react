@@ -1,36 +1,23 @@
 import React from 'react';
+import UserInfo from './UserInfo';
+import DisplayInfo from './DisplayInfo';
 class MyComponent extends React.Component {
-    state = { name: "Hieu Phan Dev", address: "HCM", age: 20 };
-
-    handleclick(event){
-        this.setState({
-            name: "Dev",
-            age: 19
-        })
-    }
-    handleOnChangeInput(event){
-        this.setState({
-            name: event.target.value,
-            age: 19
-        })
-    }
-    handleOnSubmit = (event) => {
-        event.preventDefault()
-        console.log(this.state)
+    state = {
+        listUser: [
+            { id: 1, name: "Hieu", age: 20 },
+            { id: 2, name: "Phan", age: 19 },
+            { id: 3, name: "Van", age: 18 }
+        ]
     }
     render() {
+        console.table(this.state.listUser)
         return (
-            <div>
-                My name is {this.state.name} and I'm form {this.state.address} now I'm {this.state.age} years old
-                <form onSubmit={(event) => {this.handleOnSubmit(event)}}>
-                    <input
-                    type='text'
-                    onChange={(event) => {this.handleOnChangeInput(event)}}
-                    />
-                    <button>submit</button>
-                </form>
-            </div>
             
+            <div>
+                <UserInfo></UserInfo>
+                <DisplayInfo listUser = {this.state.listUser}></DisplayInfo>
+            </div>
+
         );
     }
 }
